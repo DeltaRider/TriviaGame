@@ -1,10 +1,10 @@
-var time = 20;
+var time = 40;
 var timeOn = true;
 var ranNum = Math.floor(Math.random() * 4);
 var letters = ["A. ","B. ","C. ","D. "];
 var options = [];
 var correctAnswer;
-var timeInterval = setInterval(countTime, 1000);
+var timeInterval
 
 function out(){
     $(".popup-overlay, .popup-content").removeClass("active");
@@ -25,9 +25,10 @@ function countTime(){
         $('#time').text("Time Remaing: " + time);
     }
 }
-setInterval(timeInterval);
 
     $('#start').on('click', function(){
+        timeInterval = setInterval(countTime, 1000);
+        setInterval(timeInterval);
         $('#start').addClass('hidden');
         $('#trivia').html(`<h3 id="time">Time Remaing: ${time}</h3>
             <h4 id="question"></h4>
@@ -54,4 +55,16 @@ setInterval(timeInterval);
                 $('#answers').append(`<div id="choices"><span>${letters[i]}</span>${options[0][i]}</div>`);
             }
         }); 
+    });
+
+    $(document).on('click', '#choices', function(){
+        console.log($(this).text());
+        var word = $(this).text();
+        var needVal = word.split(". ");
+        console.log(needVal);
+        if (needVal[1] == correctAnswer){
+            alert("right");
+        } else {
+            alert("wrong");
+        }
     });
