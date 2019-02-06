@@ -101,3 +101,31 @@ html, body {
       margin-top: 20px;
       font-size: 20px;
   }
+
+  #answers {
+      text-align: center;
+  }
+
+  #choices{
+      margin-top: 20px;
+      border: 1px solid black;
+      width: 20%;
+      margin-left: 40%;
+  }
+
+  #choices:hover {
+    border:1px solid black;
+    background:black;
+    color:#F37C97;
+    text-decoration: none;
+    box-shadow: 0px 0px 10px 10px #F37C97;
+  }
+
+  #question {
+      margin-top: 20px;
+  }
+
+  .timeout h5 {
+      font-size: 40px;
+      margin-top: 175px;
+  }
