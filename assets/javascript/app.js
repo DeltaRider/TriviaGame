@@ -5,6 +5,10 @@ var letters = ["A. ","B. ","C. ","D. "];
 var options = [];
 var correctAnswer;
 var timeInterval
+var right = 0;
+var wrong = 0;
+var questions = 0;
+var preguntas = 10;
 
 function out(){
     $(".popup-overlay, .popup-content").removeClass("active");
@@ -19,14 +23,21 @@ function countTime(){
         $('.timeout').append(`<h5 id="pop">You didn't guess in time!
         <br><br>The answer was ${correctAnswer}!</h5>`);
         timeOn = false;
+        time = 40;
         clearInterval(timeInterval);
+        options = [];
+        wrong++;
+        questions++;
+        ranNum = Math.floor(Math.random() * 4);
+        setTimeout(qCheck, 3000);
     } else if (timeOn == true){
         time--;
         $('#time').text("Time Remaing: " + time);
     }
 }
 
-    $('#start').on('click', function(){
+function gameOn(){
+        timeOn = true;
         timeInterval = setInterval(countTime, 1000);
         setInterval(timeInterval);
         $('#start').addClass('hidden');
@@ -55,16 +66,67 @@ function countTime(){
                 $('#answers').append(`<div id="choices"><span>${letters[i]}</span>${options[0][i]}</div>`);
             }
         }); 
-    });
+}
+
+$('#start').on('click', function(){
+    gameOn();
+});
 
     $(document).on('click', '#choices', function(){
-        console.log($(this).text());
         var word = $(this).text();
         var needVal = word.split(". ");
-        console.log(needVal);
         if (needVal[1] == correctAnswer){
-            alert("right");
+            $('#time').addClass('hidden');
+            $('#question').addClass('hidden');
+            $('#answers').addClass('hidden');
+            $(".popup-overlay, .popup-content").addClass("active");
+            $('.timeout').append(`<h5 id="pop">That is correct!
+            <br><br>${correctAnswer} is the right answer!</h5>`);
+            timeOn = false;
+            clearInterval(timeInterval);
+            right++;
+            questions++;
+            options = [];
+            time = 40;
+            ranNum = Math.floor(Math.random() * 4);
+            setTimeout(qCheck, 3000); 
         } else {
-            alert("wrong");
+            $('#time').addClass('hidden');
+            $('#question').addClass('hidden');
+            $('#answers').addClass('hidden');
+            $(".popup-overlay, .popup-content").addClass("active");
+            $('.timeout').append(`<h5 id="pop">WRONG!
+            <br><br>The answer was ${correctAnswer}!</h5>`);
+            timeOn = false;
+            clearInterval(timeInterval);
+            wrong++;
+            questions++;
+            options = [];
+            time = 40;
+            ranNum = Math.floor(Math.random() * 4);
+            setTimeout(qCheck, 3000);
         }
     });
+
+function qCheck(){
+    if (questions == preguntas){
+        $('#time').addClass('hidden');
+        $('#question').addClass('hidden');
+        $('#answers').addClass('hidden');
+        $(".popup-overlay, .popup-content").addClass("active");
+        $('.timeout').html(`<h5 id="pop">Game Over!
+        <br><br>Correct: ${right}  |  Incorrect: ${wrong}</h5>
+        <br><br><button class="lilbutt" id="again">Play Again</button>`);
+    } else gameOn();
+}
+
+$(document).on('click','#again', function(){
+    questions = 0;
+    right = 0;
+    wrong = 0;
+    options = [];
+    time = 40;
+    gameOn();
+});
+
+{/* <button class="lilbutt" id="reset">Change Settings</button> */}

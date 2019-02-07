@@ -111,6 +111,7 @@ html, body {
       border: 1px solid black;
       width: 20%;
       margin-left: 40%;
+      border-radius: 10px;
   }
 
   #choices:hover {
@@ -128,4 +129,12 @@ html, body {
   .timeout h5 {
       font-size: 40px;
       margin-top: 175px;
+  }
+
+  .lilbutt:hover {
+    box-shadow: 0px 0px 10px 2px #156AB0;
+  }
+
+  #again {
+      margin-right: 5px;
   }
