@@ -33,7 +33,7 @@ html, body {
     font-weight: bold;
     border-color: #156AB0;
     font-size: 30px;
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
 .styled:hover {
@@ -137,4 +137,10 @@ html, body {
 
   #again {
       margin-right: 5px;
+  }
+
+  #greeting {
+    font-size: 20px;
+    margin-top: 115px;
+
   }

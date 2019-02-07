@@ -1,4 +1,4 @@
-var time = 40;
+var time = 30;
 var timeOn = true;
 var ranNum = Math.floor(Math.random() * 4);
 var letters = ["A. ","B. ","C. ","D. "];
@@ -23,7 +23,7 @@ function countTime(){
         $('.timeout').append(`<h5 id="pop">You didn't guess in time!
         <br><br>The answer was ${correctAnswer}!</h5>`);
         timeOn = false;
-        time = 40;
+        time = 30;
         clearInterval(timeInterval);
         options = [];
         wrong++;
@@ -87,7 +87,7 @@ $('#start').on('click', function(){
             right++;
             questions++;
             options = [];
-            time = 40;
+            time = 30;
             ranNum = Math.floor(Math.random() * 4);
             setTimeout(qCheck, 3000); 
         } else {
@@ -102,7 +102,7 @@ $('#start').on('click', function(){
             wrong++;
             questions++;
             options = [];
-            time = 40;
+            time = 30;
             ranNum = Math.floor(Math.random() * 4);
             setTimeout(qCheck, 3000);
         }
@@ -125,7 +125,7 @@ $(document).on('click','#again', function(){
     right = 0;
     wrong = 0;
     options = [];
-    time = 40;
+    time = 30;
     gameOn();
 });
 
